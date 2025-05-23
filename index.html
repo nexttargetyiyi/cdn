@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <!-- 响应式页面关键 meta 标签 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 页面标题和描述（模拟正常博客） -->
+  <title>我的博客 - 主页</title>
+  <meta name="description" content="这是一个简洁的个人博客首页，记录技术笔记与生活点滴。">
+  <!-- 引入 Tailwind CSS CDN 脚本 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- 头部：博客标题和语言切换按钮 -->
+  <header class="bg-blue-600 text-white py-6 px-4 mb-8">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">
+        <!-- 双语标题 -->
+        <span lang="zh">我的博客</span>
+        <span lang="en" class="hidden">My Blog</span>
+      </h1>
+      <div>
+        <!-- 语言切换按钮 -->
+        <button id="lang-zh" class="bg-white text-blue-600 px-3 py-1 rounded mr-2">中文</button>
+        <button id="lang-en" class="bg-white text-blue-600 px-3 py-1 rounded">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="container mx-auto px-4">
+    <!-- 欢迎段落 -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">
+        <!-- 双语副标题 -->
+        <span lang="zh">欢迎来到我的博客！</span>
+        <span lang="en" class="hidden">Welcome to my blog!</span>
+      </h2>
+      <p>
+        <span lang="zh">这是一个示例博客首页，您可以在这里阅读技术文章、生活笔记等内容。</span>
+        <span lang="en" class="hidden">This is a sample blog homepage where you can read tech articles, life notes, and more.</span>
+      </p>
+    </section>
+
+    <!-- API 调用示例 -->
+    <section class="mb-6">
+      <button id="ping-btn" class="bg-green-500 text-white px-4 py-2 rounded">Ping API</button>
+      <p id="ping-result" class="mt-2 italic text-gray-600"></p>
+    </section>
+  </main>
+
+  <!-- 语言切换和 API 调用脚本 -->
+  <script>
+    // 语言切换功能
+    const zhButton = document.getElementById('lang-zh');
+    const enButton = document.getElementById('lang-en');
+    const zhElems = document.querySelectorAll('[lang="zh"]');
+    const enElems = document.querySelectorAll('[lang="en"]');
+    zhButton.addEventListener('click', () => {
+      zhElems.forEach(el => el.classList.remove('hidden'));
+      enElems.forEach(el => el.classList.add('hidden'));
+    });
+    enButton.addEventListener('click', () => {
+      enElems.forEach(el => el.classList.remove('hidden'));
+      zhElems.forEach(el => el.classList.add('hidden'));
+    });
+
+    // 调用示例 API（使用 fetch）
+    document.getElementById('ping-btn').addEventListener('click', () => {
+      fetch('/api/ping')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('ping-result').innerText = data.message;
+        })
+        .catch(error => {
+          console.error('Fetch error:', error);
+          document.getElementById('ping-result').innerText = 'API 请求失败';
+        });
+    });
+  </script>
+</body>
+</html>
