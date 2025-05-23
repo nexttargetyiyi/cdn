@@ -1,82 +1,256 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="multilingual" dir="auto">
 <head>
-  <meta charset="UTF-8">
-  <!-- 响应式页面关键 meta 标签 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 页面标题和描述（模拟正常博客） -->
-  <title>我的博客 - 主页</title>
-  <meta name="description" content="这是一个简洁的个人博客首页，记录技术笔记与生活点滴。">
-  <!-- 引入 Tailwind CSS CDN 脚本 -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- 动态多语言元数据 -->
+    <meta data-lang="en" name="description" content="Technology blog and research notes">
+    <meta data-lang="zh" name="description" content="技术博客与科研笔记">
+    
+    <title data-lang="en">Tech Nexus | Innovation Hub</title>
+    <title data-lang="zh">技术枢纽 | 创新中心</title>
+
+    <style>
+        /* 基础响应式框架 */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-light: #f9f9f9;
+            --text-dark: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            background: var(--background-light);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        /* 高级导航系统 */
+        .nav-container {
+            background: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        /* 专业内容布局 */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 多语言切换器 */
+        .lang-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 1rem;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- 头部：博客标题和语言切换按钮 -->
-  <header class="bg-blue-600 text-white py-6 px-4 mb-8">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-3xl font-bold">
-        <!-- 双语标题 -->
-        <span lang="zh">我的博客</span>
-        <span lang="en" class="hidden">My Blog</span>
-      </h1>
-      <div>
-        <!-- 语言切换按钮 -->
-        <button id="lang-zh" class="bg-white text-blue-600 px-3 py-1 rounded mr-2">中文</button>
-        <button id="lang-en" class="bg-white text-blue-600 px-3 py-1 rounded">English</button>
-      </div>
+<body>
+    <!-- 动态导航系统 -->
+    <nav class="nav-container">
+        <div class="nav-menu">
+            <a href="/" class="logo" data-lang="en">TechNexus</a>
+            <a href="/" class="logo" data-lang="zh">技术枢纽</a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="/research" data-lang="en">Research</a>
+                <a href="/research" data-lang="zh">科研</a>
+                <a href="/archive" data-lang="en">Archive</a>
+                <a href="/archive" data-lang="zh">归档</a>
+                <a href="/about" data-lang="en">About</a>
+                <a href="/about" data-lang="zh">关于</a>
+            </div>
+            
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    </nav>
+
+    <!-- 代理兼容内容区域 -->
+    <main class="main-container">
+        <div class="content">
+            <article class="article-card">
+                <h2 data-lang="en">Latest Research: Quantum Computing Advances</h2>
+                <h2 data-lang="zh">最新研究：量子计算突破</h2>
+                <p data-lang="en">Exploring new frontiers in quantum algorithm optimization...</p>
+                <p data-lang="zh">量子算法优化的新前沿探索...</p>
+            </article>
+
+            <!-- 代理接口示例 -->
+            <div class="proxy-interface">
+                <h3 data-lang="en">Data Query</h3>
+                <h3 data-lang="zh">数据查询</h3>
+                <form action="/api/proxy" method="POST">
+                    <input type="text" name="query" placeholder="Enter request...">
+                    <button type="submit" data-lang="en">Submit</button>
+                    <button type="submit" data-lang="zh">提交</button>
+                </form>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button data-lang="en">Search</button>
+                <button data-lang="zh">搜索</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 多语言切换 -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <span id="currentLang">EN/中文</span>
     </div>
-  </header>
 
-  <!-- 主内容区 -->
-  <main class="container mx-auto px-4">
-    <!-- 欢迎段落 -->
-    <section class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">
-        <!-- 双语副标题 -->
-        <span lang="zh">欢迎来到我的博客！</span>
-        <span lang="en" class="hidden">Welcome to my blog!</span>
-      </h2>
-      <p>
-        <span lang="zh">这是一个示例博客首页，您可以在这里阅读技术文章、生活笔记等内容。</span>
-        <span lang="en" class="hidden">This is a sample blog homepage where you can read tech articles, life notes, and more.</span>
-      </p>
-    </section>
+    <script>
+        // 高级语言管理系统
+        const translations = {
+            en: {
+                logo: "TechNexus",
+                menu: ["Research", "Archive", "About"],
+                content: {
+                    title: "Latest Research: Quantum Computing Advances",
+                    text: "Exploring new frontiers in quantum algorithm optimization..."
+                }
+            },
+            zh: {
+                logo: "技术枢纽",
+                menu: ["科研", "归档", "关于"],
+                content: {
+                    title: "最新研究：量子计算突破",
+                    text: "量子算法优化的新前沿探索..."
+                }
+            }
+        };
 
-    <!-- API 调用示例 -->
-    <section class="mb-6">
-      <button id="ping-btn" class="bg-green-500 text-white px-4 py-2 rounded">Ping API</button>
-      <p id="ping-result" class="mt-2 italic text-gray-600"></p>
-    </section>
-  </main>
+        let currentLang = 'en';
 
-  <!-- 语言切换和 API 调用脚本 -->
-  <script>
-    // 语言切换功能
-    const zhButton = document.getElementById('lang-zh');
-    const enButton = document.getElementById('lang-en');
-    const zhElems = document.querySelectorAll('[lang="zh"]');
-    const enElems = document.querySelectorAll('[lang="en"]');
-    zhButton.addEventListener('click', () => {
-      zhElems.forEach(el => el.classList.remove('hidden'));
-      enElems.forEach(el => el.classList.add('hidden'));
-    });
-    enButton.addEventListener('click', () => {
-      enElems.forEach(el => el.classList.remove('hidden'));
-      zhElems.forEach(el => el.classList.add('hidden'));
-    });
+        // 动态语言切换
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            document.documentElement.lang = currentLang;
+            
+            // 更新所有带翻译标记的元素
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.dataset.lang === currentLang) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
 
-    // 调用示例 API（使用 fetch）
-    document.getElementById('ping-btn').addEventListener('click', () => {
-      fetch('/api/ping')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('ping-result').innerText = data.message;
-        })
-        .catch(error => {
-          console.error('Fetch error:', error);
-          document.getElementById('ping-result').innerText = 'API 请求失败';
+            // 更新语言标识
+            document.getElementById('currentLang').textContent = currentLang === 'en' ? 'EN/中文' : '中文/EN';
+        }
+
+        // 移动端菜单控制
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // 代理请求处理器
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch('/api/proxy', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                // 处理代理响应...
+            } catch (error) {
+                console.error('Proxy request failed:', error);
+            }
         });
-    });
-  </script>
+    </script>
 </body>
 </html>
