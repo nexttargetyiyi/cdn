@@ -2,15 +2,16 @@ name: 定时 Ping 伪装域名
 
 on:
   schedule:
-    - cron: '0 * * * *' # 每小时执行一次
-  workflow_dispatch:
+    # UTC 时间，每小时执行一次
+    - cron: '0 * * * *'
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: 模拟访问首页
-        run: |
-          curl -s https://cdn.dw-j.sbs > /dev/null
-          curl -s https://cdn.dw-j.sbs/blog > /dev/null
-          curl -s https://cdn.dw-j.sbs/contact > /dev/null
+      - name: 访问 首页
+        run: curl -s https://cdn.dw-j.sbs > /dev/null
+      - name: 访问 博客
+        run: curl -s https://cdn.dw-j.sbs/#blog > /dev/null
+      - name: 访问 联系我们
+        run: curl -s https://cdn.dw-j.sbs/#contact > /dev/null
