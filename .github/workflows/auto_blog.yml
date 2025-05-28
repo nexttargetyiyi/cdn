@@ -38,8 +38,8 @@ jobs:
               "总结现代CDN的关键技术和典型应用。",
           ]
           prompt = random.choice(prompt_list)
-          openai.api_key = "${{ secrets.OPENAI_API_KEY }}"
-          resp = openai.ChatCompletion.create(
+          client = openai.OpenAI(api_key="${{ secrets.OPENAI_API_KEY }}")
+          response = client.chat.completions.create(
               model="gpt-3.5-turbo",
               messages=[
                   {"role": "system", "content": "你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
@@ -48,7 +48,7 @@ jobs:
               max_tokens=750,
               temperature=0.7,
           )
-          text = resp['choices'][0]['message']['content'].strip()
+          text = response.choices[0].message.content.strip()
           md_file = blog_dir / f"{today}.md"
           with open(md_file, "w") as f:
               f.write(f"# {today} | AI自动生成博客\n\n{prompt}\n\n{text}\n")
