@@ -1,15 +1,17 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>云加速CDN服务</title>
+  <!-- 预连接提升性能 -->
+  <link rel="preconnect" href="https://www.google.com"/>
+  <link rel="preconnect" href="https://formspree.io"/>
   <!-- TailwindCSS & AlpineJS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800 antialiased">
   <!-- Navbar -->
   <nav class="bg-white shadow fixed w-full z-50" x-data="{ open: false }">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -20,12 +22,13 @@
         <a href="#contact" class="hover:text-blue-600">联系我们</a>
       </div>
       <button class="md:hidden" @click="open = !open">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
-    <!-- Mobile Menu -->
     <div x-show="open" class="md:hidden bg-white">
       <a href="#home" class="block px-4 py-2">首页</a>
       <a href="#blog" class="block px-4 py-2">博客</a>
@@ -38,7 +41,7 @@
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-6xl font-bold mb-4">全球领先的云加速CDN服务</h1>
       <p class="mb-8 text-lg md:text-xl">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
-      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100">免费试用</a>
+      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition">免费试用</a>
     </div>
   </section>
 
@@ -46,17 +49,17 @@
   <section class="container mx-auto px-4 py-16">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div>
-        <img src="https://via.placeholder.com/64" alt="全球节点" class="mx-auto mb-4"/>
+        <img src="https://via.placeholder.com/64" alt="全球节点" class="mx-auto mb-4 w-16 h-16 object-contain"/>
         <h3 class="font-semibold mb-2">全球节点</h3>
         <p>覆盖全球 200+ 节点，智能调度</p>
       </div>
       <div>
-        <img src="https://via.placeholder.com/64" alt="自主缓存" class="mx-auto mb-4"/>
+        <img src="https://via.placeholder.com/64" alt="自主缓存" class="mx-auto mb-4 w-16 h-16 object-contain"/>
         <h3 class="font-semibold mb-2">自主缓存</h3>
         <p>多层缓存策略，有效加速资源加载</p>
       </div>
       <div>
-        <img src="https://via.placeholder.com/64" alt="实时监控" class="mx-auto mb-4"/>
+        <img src="https://via.placeholder.com/64" alt="实时监控" class="mx-auto mb-4 w-16 h-16 object-contain"/>
         <h3 class="font-semibold mb-2">实时监控</h3>
         <p>全面的流量监控与告警系统</p>
       </div>
@@ -85,21 +88,26 @@
   <!-- Contact Form -->
   <section id="contact" class="container mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold mb-4">联系我们</h2>
-    <form action="https://formspree.io/f/xdkgqdqo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded"/>
-      <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded"/>
-      <textarea name="message" placeholder="留言内容" required class="p-3 border rounded md:col-span-2"></textarea>
-      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700">发送</button>
+    <form action="https://formspree.io/f/xdkgqdqo" method="POST"
+          class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded focus:outline-none focus:ring"/>
+      <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded focus:outline-none focus:ring"/>
+      <textarea name="message" placeholder="留言内容" required
+                class="p-3 border rounded md:col-span-2 focus:outline-none focus:ring"></textarea>
+      <button type="submit"
+              class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700 transition">
+        发送
+      </button>
     </form>
   </section>
 
   <!-- Map Embed -->
   <section class="container mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold mb-4">我们的地址</h2>
-    <div class="w-full h-64 rounded overflow-hidden">
+    <div class="relative w-full pb-[56.25%] overflow-hidden rounded-lg shadow">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517902!2d-73.97741390372643!3d40.78302074600113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25888b2a55555%3A0xac07bef1e6a646ad!2sAffirmed%20Systems!5e0!3m2!1szh-CN!2sus!4v1748432148846!5m2!1szh-CN!2sus"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        class="absolute top-0 left-0 w-full h-full border-0" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -113,28 +121,3 @@
   </footer>
 </body>
 </html>
-
-<!-- simulate.sh -->
-#!/usr/bin/env bash
-# 定义要访问的 URL
-HOST="https://your-cdn-domain.com"
-URLS=("$HOST" "$HOST/blog" "$HOST/contact")
-for path in "${URLS[@]}"; do
-  curl -s "$path" > /dev/null
-  sleep 2
-done
-
-<!-- .github/workflows/ping.yml -->
-name: 定时 Ping 伪装域名
-on:
-  schedule:
-    - cron: '0 * * * *' # 每小时执行一次
-jobs:
-  ping:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ping 服务
-        run: |
-          curl -s https://your-cdn-domain.com > /dev/null
-          curl -s https://your-cdn-domain.com/blog > /dev/null
-          curl -s https://your-cdn-domain.com/contact > /dev/null
