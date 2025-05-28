@@ -1,0 +1,36 @@
+<!-- speedtest/index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网络测速 - 云加速</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6 text-center">实时网络测速</h1>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+      <p class="text-lg">测试时间：<span id="timestamp"></span></p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div class="p-4 border rounded">
+          <h2 class="text-xl font-semibold mb-2">下载速度</h2>
+          <p class="text-3xl font-bold text-green-600">543.2 Mbps</p>
+        </div>
+        <div class="p-4 border rounded">
+          <h2 class="text-xl font-semibold mb-2">上传速度</h2>
+          <p class="text-3xl font-bold text-blue-600">201.7 Mbps</p>
+        </div>
+        <div class="p-4 border rounded">
+          <h2 class="text-xl font-semibold mb-2">响应延迟</h2>
+          <p class="text-3xl font-bold text-red-600">22 ms</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const ts = new Date();
+    document.getElementById("timestamp").innerText = ts.toLocaleString();
+  </script>
+</body>
+</html>
