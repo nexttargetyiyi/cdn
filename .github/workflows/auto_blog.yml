@@ -20,7 +20,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          cat <<EOF > ai_blog_generate.py
+          python3 <<EOF
 import openai
 import datetime
 import random
@@ -41,8 +41,10 @@ prompt = random.choice(prompt_list)
 openai.api_key = "${{ secrets.OPENAI_API_KEY }}"
 resp = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
-    messages=[{"role":"system", "content":"你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
-              {"role":"user", "content":prompt}],
+    messages=[
+        {"role": "system", "content": "你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
+        {"role": "user", "content": prompt}
+    ],
     max_tokens=750,
     temperature=0.7,
 )
@@ -51,11 +53,9 @@ md_file = blog_dir / f"{today}.md"
 with open(md_file, "w") as f:
     f.write(f"# {today} | AI自动生成博客\n\n{prompt}\n\n{text}\n")
 EOF
-          python3 ai_blog_generate.py
 
-      - name: Markdown 转 HTML（简单）
+      - name: Markdown 转 HTML
         run: |
-          pip install markdown2
           for md in blog/*.md; do
             html="blog/$(basename "$md" .md).html"
             markdown2 "$md" > "$html"
