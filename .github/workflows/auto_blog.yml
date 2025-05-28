@@ -2,7 +2,7 @@ name: 每两天AI自动生成博客
 
 on:
   schedule:
-    - cron: '0 2 */2 * *'   # 每两天的北京时间10:00自动运行
+    - cron: '0 2 * * 1,4'   # 每周一和周四的 UTC 时间 02:00 运行
   workflow_dispatch:
 
 jobs:
@@ -21,10 +21,12 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python3 <<EOF
-          import openai
+          import os
+          import time
           import datetime
           import random
           from pathlib import Path
+          from openai import OpenAI, RateLimitError
 
           today = datetime.date.today()
           blog_dir = Path("blog")
@@ -38,20 +40,36 @@ jobs:
               "总结现代CDN的关键技术和典型应用。",
           ]
           prompt = random.choice(prompt_list)
-          client = openai.OpenAI(api_key="${{ secrets.OPENAI_API_KEY }}")
-          response = client.chat.completions.create(
-              model="gpt-3.5-turbo",
-              messages=[
-                  {"role": "system", "content": "你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
-                  {"role": "user", "content": prompt}
-              ],
-              max_tokens=750,
-              temperature=0.7,
-          )
-          text = response.choices[0].message.content.strip()
-          md_file = blog_dir / f"{today}.md"
-          with open(md_file, "w") as f:
-              f.write(f"# {today} | AI自动生成博客\n\n{prompt}\n\n{text}\n")
+          client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+          def fetch_openai_response(prompt, retries=5):
+              for attempt in range(retries):
+                  try:
+                      response = client.chat.completions.create(
+                          model="gpt-3.5-turbo",
+                          messages=[
+                              {"role": "system", "content": "你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
+                              {"role": "user", "content": prompt}
+                          ],
+                          max_tokens=750,
+                          temperature=0.7,
+                      )
+                      return response.choices[0].message.content.strip()
+                  except RateLimitError:
+                      if attempt < retries - 1:
+                          wait_time = 2 ** attempt
+                          print(f"Rate limit hit. Retrying in {wait_time} seconds...")
+                          time.sleep(wait_time)
+                      else:
+                          raise
+
+          try:
+              text = fetch_openai_response(prompt)
+              md_file = blog_dir / f"{today}.md"
+              with open(md_file, "w") as f:
+                  f.write(f"# {today} | AI自动生成博客\n\n{prompt}\n\n{text}\n")
+          except Exception as e:
+              print(f"Failed to generate blog: {e}")
           EOF
 
       - name: Markdown 转 HTML
