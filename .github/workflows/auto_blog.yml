@@ -2,7 +2,8 @@ name: 每两天AI自动生成博客
 
 on:
   schedule:
-    - cron: '0 2 * * 1,4'   # 每周一和周四的 UTC 时间 02:00 运行
+    - cron: '0 2 * * 1'   # 每周一 UTC 时间 02:00
+    - cron: '0 2 * * 4'   # 每周四 UTC 时间 02:00
   workflow_dispatch:
 
 jobs:
