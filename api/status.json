@@ -1,9 +1,0 @@
-{
-  "status": "ok",
-  "updated": "2025-05-25T03:22:00Z",
-  "nodes": [
-    {"id": "tokyo-edge", "region": "Japan", "latency": 12},
-    {"id": "frankfurt-edge", "region": "Germany", "latency": 30},
-    {"id": "singapore-edge", "region": "Asia", "latency": 18}
-  ]
-}
