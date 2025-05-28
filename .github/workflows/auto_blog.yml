@@ -20,8 +20,10 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          cat <<'EOF' > ai_blog_generate.py
-import openai, datetime, random
+          cat <<EOF > ai_blog_generate.py
+import openai
+import datetime
+import random
 from pathlib import Path
 
 today = datetime.date.today()
