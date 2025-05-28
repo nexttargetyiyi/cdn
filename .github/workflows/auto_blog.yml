@@ -1,0 +1,68 @@
+name: 每日AI博客自动生成
+
+on:
+  schedule:
+    - cron: '30 1 * * *'   # 每天 09:30 (北京时间)，可根据需要调整
+  workflow_dispatch:
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 Python 依赖
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install openai markdown2
+
+      - name: 生成AI博客并保存为 Markdown
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cat <<'EOF' > ai_blog_generate.py
+import openai, datetime, random
+from pathlib import Path
+
+today = datetime.date.today()
+blog_dir = Path("blog")
+blog_dir.mkdir(exist_ok=True)
+prompt_list = [
+    "写一篇关于CDN和网络加速的科普文章，500字以内。",
+    "简述网站加速和内容分发网络（CDN）技术演进。",
+    "介绍DDoS攻击防护的常见策略。",
+    "解释缓存穿透是什么，以及如何预防。",
+    "分享如何优化网站响应速度，适合初学者。",
+    "总结现代CDN的关键技术和典型应用。",
+]
+prompt = random.choice(prompt_list)
+openai.api_key = "${{ secrets.OPENAI_API_KEY }}"
+resp = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[{"role":"system", "content":"你是一名IT技术博客作者，写作风格专业简洁，适合技术社区。"},
+              {"role":"user", "content":prompt}],
+    max_tokens=750,
+    temperature=0.7,
+)
+text = resp['choices'][0]['message']['content'].strip()
+md_file = blog_dir / f"{today}.md"
+with open(md_file, "w") as f:
+    f.write(f"# {today} | AI自动生成博客\n\n{prompt}\n\n{text}\n")
+EOF
+          python3 ai_blog_generate.py
+
+      - name: Markdown 转 HTML（简单）
+        run: |
+          pip install markdown2
+          for md in blog/*.md; do
+            html="blog/$(basename "$md" .md).html"
+            markdown2 "$md" > "$html"
+          done
+
+      - name: 提交更新到仓库
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/
+          git commit -m "每日AI自动生成博客: $(date '+%F')" || echo "无新内容"
+          git push
