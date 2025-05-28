@@ -1,104 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" x-data="{ lang: 'zh-CN' }" x-init="$watch('lang', value => document.documentElement.lang = value)">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>云加速CDN服务</title>
-  <!-- 预连接提升性能 -->
-  <link rel="preconnect" href="https://www.google.com"/>
-  <link rel="preconnect" href="https://formspree.io"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title x-text="lang === 'zh-CN' ? '云加速CDN服务' : 'Cloud Acceleration CDN Service'">云加速CDN服务</title>
   <!-- TailwindCSS & AlpineJS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="font-sans text-gray-800 antialiased">
+<body class="font-sans text-gray-800" x-data="{ open: false }">
   <!-- Navbar -->
-  <nav class="bg-white shadow fixed w-full z-50" x-data="{ open: false }">
+  <nav class="bg-white shadow fixed w-full z-50">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#home" class="text-2xl font-bold">云加速</a>
+      <a href="#home" class="text-2xl font-bold" x-text="lang === 'zh-CN' ? '云加速' : 'Cloud Acceleration'">云加速</a>
       <div class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-blue-600">首页</a>
-        <a href="#blog" class="hover:text-blue-600">博客</a>
-        <a href="#contact" class="hover:text-blue-600">联系我们</a>
+        <a href="#home" class="hover:text-blue-600" x-text="lang === 'zh-CN' ? '首页' : 'Home'">首页</a>
+        <a href="#blog" class="hover:text-blue-600" x-text="lang === 'zh-CN' ? '博客' : 'Blog'">博客</a>
+        <a href="#contact" class="hover:text-blue-600" x-text="lang === 'zh-CN' ? '联系我们' : 'Contact Us'">联系我们</a>
+        <a href="#speedtest" class="hover:text-blue-600" x-text="lang === 'zh-CN' ? '测速' : 'Speed Test'">测速</a>
       </div>
-      <button class="md:hidden" @click="open = !open">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
+      <div class="flex items-center space-x-4">
+        <button @click="lang = lang === 'zh-CN' ? 'en' : 'zh-CN'" class="text-sm text-gray-600 hover:text-blue-600">
+          <span x-text="lang === 'zh-CN' ? 'EN' : '中文'">EN</span>
+        </button>
+        <button class="md:hidden" @click="open = !open">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
+    <!-- Mobile Menu -->
     <div x-show="open" class="md:hidden bg-white">
-      <a href="#home" class="block px-4 py-2">首页</a>
-      <a href="#blog" class="block px-4 py-2">博客</a>
-      <a href="#contact" class="block px-4 py-2">联系我们</a>
+      <a href="#home" class="block px-4 py-2" x-text="lang === 'zh-CN' ? '首页' : 'Home'">首页</a>
+      <a href="#blog" class="block px-4 py-2" x-text="lang === 'zh-CN' ? '博客' : 'Blog'">博客</a>
+      <a href="#contact" class="block px-4 py-2" x-text="lang === 'zh-CN' ? '联系我们' : 'Contact Us'">联系我们</a>
+      <a href="#speedtest" class="block px-4 py-2" x-text="lang === 'zh-CN' ? '测速' : 'Speed Test'">测速</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="pt-20 bg-gradient-to-r from-blue-500 to-green-500 text-white py-20">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">全球领先的云加速CDN服务</h1>
-      <p class="mb-8 text-lg md:text-xl">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
-      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition">免费试用</a>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4" x-text="lang === 'zh-CN' ? '全球领先的云加速CDN服务' : 'World-Leading Cloud Acceleration CDN Service'">全球领先的云加速CDN服务</h1>
+      <p class="mb-8 text-lg md:text-xl" x-text="lang === 'zh-CN' ? '高性能、低延迟、万兆带宽，助力您的业务高速稳定运行' : 'High performance, low latency, 10Gbps bandwidth to support your business running fast and stable'">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
+      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100" x-text="lang === 'zh-CN' ? '免费试用' : 'Free Trial'">免费试用</a>
     </div>
   </section>
 
-<!-- Features -->
-<section class="container mx-auto px-4 py-16">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-    <!-- 全球节点 -->
-    <div>
-      <!-- Heroicons: globe-alt -->
-      <svg xmlns="http://www.w3.org/2000/svg"
-           class="mx-auto mb-4 w-16 h-16 text-blue-500"
-           fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M2 12h20M12 2c2.21 4.42 2.21 8.58 0 13M12 2c-2.21 4.42-2.21 8.58 0 13"/>
-      </svg>
-      <h3 class="font-semibold mb-2">全球节点</h3>
-      <p>覆盖全球 200+ 节点，智能调度</p>
+  <!-- Features -->
+  <section class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div>
+        <img src="https://via.placeholder.com/64" alt="全球节点" class="mx-auto mb-4"/>
+        <h3 class="font-semibold mb-2" x-text="lang === 'zh-CN' ? '全球节点' : 'Global Nodes'">全球节点</h3>
+        <p x-text="lang === 'zh-CN' ? '覆盖全球 200+ 节点，智能调度' : 'Covering 200+ global nodes with intelligent scheduling'">覆盖全球 200+ 节点，智能调度</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/64" alt="自主缓存" class="mx-auto mb-4"/>
+        <h3 class="font-semibold mb-2" x-text="lang === 'zh-CN' ? '自主缓存' : 'Self-Managed Caching'">自主缓存</h3>
+        <p x-text="lang === 'zh-CN' ? '多层缓存策略，有效加速资源加载' : 'Multi-layer caching strategy to effectively accelerate resource loading'">多层缓存策略，有效加速资源加载</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/64" alt="实时监控" class="mx-auto mb-4"/>
+        <h3 class="font-semibold mb-2" x-text="lang === 'zh-CN' ? '实时监控' : 'Real-Time Monitoring'">实时监控</h3>
+        <p x-text="lang === 'zh-CN' ? '全面的流量监控与告警系统' : 'Comprehensive traffic monitoring and alert system'">全面的流量监控与告警系统</p>
+      </div>
     </div>
-
-    <!-- 自主缓存 -->
-    <div>
-      <!-- Heroicons: database -->
-      <svg xmlns="http://www.w3.org/2000/svg"
-           class="mx-auto mb-4 w-16 h-16 text-green-500"
-           fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2M4 10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2"/>
-      </svg>
-      <h3 class="font-semibold mb-2">自主缓存</h3>
-      <p>多层缓存策略，有效加速资源加载</p>
-    </div>
-
-    <!-- 实时监控 -->
-    <div>
-      <!-- Heroicons: chart-bar -->
-      <svg xmlns="http://www.w3.org/2000/svg"
-           class="mx-auto mb-4 w-16 h-16 text-purple-500"
-           fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 3v18h18"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M18 9l-3 3-2-2-4 4-2-2"/>
-      </svg>
-      <h3 class="font-semibold mb-2">实时监控</h3>
-      <p>全面的流量监控与告警系统</p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Blog Section -->
   <section id="blog" class="bg-gray-50 py-16">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8">最新博客</h2>
+      <h2 class="text-3xl font-bold mb-8" x-text="lang === 'zh-CN' ? '最新博客' : 'Latest Blog'">最新博客</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <article class="bg-white p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2"><a href="#">如何优化网站性能</a></h3>
@@ -116,37 +90,18 @@
 
   <!-- Contact Form -->
   <section id="contact" class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-4">联系我们</h2>
-    <form action="https://formspree.io/f/xdkgqdqo" method="POST"
-          class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded focus:outline-none focus:ring"/>
-      <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded focus:outline-none focus:ring"/>
-      <textarea name="message" placeholder="留言内容" required
-                class="p-3 border rounded md:col-span-2 focus:outline-none focus:ring"></textarea>
-      <button type="submit"
-              class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700 transition">
-        发送
-      </button>
+    <h2 class="text-3xl font-bold mb-4" x-text="lang === 'zh-CN' ? '联系我们' : 'Contact Us'">联系我们</h2>
+    <form action="https://formspree.io/f/xdkgqdqo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded"/>
+      <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded"/>
+      <textarea name="message" placeholder="留言内容" required class="p-3 border rounded md:col-span-2"></textarea>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700" x-text="lang === 'zh-CN' ? '发送' : 'Send'">发送</button>
     </form>
   </section>
 
   <!-- Map Embed -->
   <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-4">我们的地址</h2>
-    <div class="relative w-full pb-[56.25%] overflow-hidden rounded-lg shadow">
+    <h2 class="text-3xl font-bold mb-4" x-text="lang === 'zh-CN' ? '我们的地址' : 'Our Address'">我们的地址</h2>
+    <div class="w-full h-64 rounded overflow-hidden">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517902!2d-73.97741390372643!3d40.78302074600113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25888b2a55555%3A0xac07bef1e6a646ad!2sAffirmed%20Systems!5e0!3m2!1szh-CN!2sus!4v1748432148846!5m2!1szh-CN!2sus"
-        class="absolute top-0 left-0 w-full h-full border-0" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-300 py-6">
-    <div class="container mx-auto px-4 text-center">
-      <p>&copy; 2025 云加速科技有限公司</p>
-    </div>
-  </footer>
-</body>
-</html>
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517 
