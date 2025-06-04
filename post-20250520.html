@@ -2,24 +2,40 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>CDN 安全防护实践 - 云加速博客</title>
+  <title>CDN 在安全防护体系中的角色重构 - 云加速博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-4">CDN 安全防护实践</h1>
-    <p class="text-sm text-gray-500 mb-8">发布日期：2025-05-20 | 分类：安全运维</p>
+    <h1 class="text-4xl font-bold mb-4">CDN 在安全防护体系中的角色重构</h1>
+    <p class="text-sm text-gray-500 mb-8">发布日期：2025-06-01 | 分类：安全架构</p>
 
     <div class="prose max-w-none">
-      <p>CDN 不仅负责内容分发，还肩负着安全防护的重任。以下是我们实践中的关键策略：</p>
+      <p>在云原生与边缘计算时代，CDN 已不再是简单的内容分发网络，而是演进为网络安全体系的重要一环。我们探讨 CDN 如何逐步融合入企业安全架构，并实现从防护边界到行为感知的转型。</p>
+
+      <h2>一、从基础防护到主动感知</h2>
       <ul>
-        <li>部署边缘 WAF 规则，实时阻断攻击请求</li>
-        <li>防御 CC 和 DDoS 攻击，启用自动限速策略</li>
-        <li>开启 TLS 加密和 SNI 隐藏，保护传输链路</li>
-        <li>日志审计 + 行为识别，提升防御智能化</li>
+        <li><strong>DDoS 攻击吸收</strong>：CDN 节点具备高并发流量吸收能力，是天然的抗压盾牌。</li>
+        <li><strong>边缘 WAF 规则</strong>：在靠近用户的一跳实现 SQL 注入、XSS 检测与阻断。</li>
+        <li><strong>Bot 管理</strong>：通过 IP 信誉、UA 行为、访问频率等维度识别恶意机器人。</li>
       </ul>
-      <p>安全防护体系是 CDN 服务可信运行的基石，值得持续投入。</p>
+
+      <h2>二、TLS 与流量加密演进</h2>
+      <ul>
+        <li><strong>SNI 加密与 ALPN 协议调度</strong>：提升隐私保障，减少流量被识别风险。</li>
+        <li><strong>中间人防护</strong>：部署 OCSP Stapling 与 HSTS，防止证书链被篡改。</li>
+        <li><strong>端到端加密链路</strong>：保障链路全程 TLS 传输，避免节点明文暴露。</li>
+      </ul>
+
+      <h2>三、安全即服务的未来趋势</h2>
+      <ul>
+        <li>CDN 将持续融合 WAF、Zero Trust、SIEM 平台，实现云边协同。</li>
+        <li>支持 API 层防护与流量审计，进入微服务与敏感数据防泄漏领域。</li>
+        <li>与 AI/ML 模型联动，构建动态策略系统，识别未知攻击路径。</li>
+      </ul>
+
+      <p>CDN 的安全角色正在重塑，它不只是基础设施，更是现代安全战略的分布式前哨。</p>
     </div>
 
     <div class="mt-10">
