@@ -1,124 +1,123 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>云加速CDN服务</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-<!-- Navbar -->
-<nav class="bg-white shadow fixed w-full z-50">
-  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-    <a href="#home" class="text-2xl font-bold">云加速</a>
-    <div class="hidden md:flex space-x-6">
-      <a href="#home" class="hover:text-blue-600">首页</a>
-      <a href="#blog" class="hover:text-blue-600">博客</a>
-      <a href="#contact" class="hover:text-blue-600">联系我们</a>
-      <a href="/speedtest/" class="hover:text-blue-600">测速</a>
-      <a href="/metrics.html" class="hover:text-blue-600">CDN统计</a>
-      <a href="/edge-nodes.html" class="hover:text-blue-600">全球节点</a>
+  <!-- 顶部导航 -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">云加速CDN服务</h1>
+      <nav class="space-x-4">
+        <a href="#blog" class="text-gray-700 hover:text-blue-600">博客</a>
+        <a href="#speedtest" class="text-gray-700 hover:text-blue-600">测速</a>
+        <a href="#updates" class="text-gray-700 hover:text-blue-600">更新日志</a>
+        <a href="#contact" class="text-gray-700 hover:text-blue-600">联系我们</a>
+      </nav>
     </div>
-  </div>
-</nav>
+  </header>
 
-<!-- Hero Section -->
-<section id="home" class="pt-20 bg-gradient-to-r from-blue-500 to-green-500 text-white py-20">
-  <div class="container mx-auto px-4 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-4">全球领先的云加速CDN服务</h1>
-    <p class="mb-8 text-lg md:text-xl">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
-    <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100">免费试用</a>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="container mx-auto px-4 py-16">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-    <div>
-      <div class="flex justify-center mb-4">
-        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" class="text-blue-600" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/>
-        </svg>
+  <!-- 全球节点分布 -->
+  <section class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-4xl font-bold text-center mb-8">🌐 全球节点分布</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-2">美国</h3>
+        <p>洛杉矶、达拉斯、芝加哥</p>
       </div>
-      <h3 class="font-semibold mb-2">全球节点</h3>
-      <p>覆盖全球 200+ 节点，智能调度</p>
-    </div>
-    <div>
-      <div class="flex justify-center mb-4">
-        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" class="text-green-600" viewBox="0 0 24 24">
-          <rect x="3" y="11" width="18" height="7" rx="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-2">日本</h3>
+        <p>东京、大阪</p>
       </div>
-      <h3 class="font-semibold mb-2">自主缓存</h3>
-      <p>多层缓存策略，有效加速资源加载</p>
-    </div>
-    <div>
-      <div class="flex justify-center mb-4">
-        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" class="text-pink-600" viewBox="0 0 24 24">
-          <rect x="2" y="7" width="20" height="14" rx="2"/>
-          <path d="M16 3v4M8 3v4"/>
-        </svg>
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-2">新加坡</h3>
+        <p>Equinix SG1、DigitalOcean</p>
       </div>
-      <h3 class="font-semibold mb-2">实时监控</h3>
-      <p>全面的流量监控与告警系统</p>
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-2">德国</h3>
+        <p>法兰克福、柏林</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-2">中国香港</h3>
+        <p>HKBN、HGC、CMI</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Blog Section -->
-<section id="blog" class="bg-gray-50 py-16">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8">最新博客</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <article class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-2xl font-semibold mb-2"><a href="#">如何优化网站性能</a></h3>
-        <p class="text-sm text-gray-500 mb-4">2025-05-28 | 技术探讨</p>
-        <p>本文介绍了常见的性能优化策略，包含缓存、压缩等技术。</p>
-      </article>
-      <article class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-2xl font-semibold mb-2"><a href="#">CDN 安全防护实践</a></h3>
-        <p class="text-sm text-gray-500 mb-4">2025-05-20 | 安全运维</p>
-        <p>深入分享如何对抗常见的 DDoS 攻击与缓存穿透。</p>
-      </article>
+  <!-- 延迟图表（占位） -->
+  <section id="latency" class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">📈 延迟趋势图（示意）</h2>
+    <div class="bg-white shadow rounded-xl p-6 text-center">
+      <p class="text-gray-500">图表加载中…</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact Form -->
-<section id="contact" class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-4">联系我们</h2>
-  <form action="https://formspree.io/f/xdkgqdqo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded"/>
-    <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded"/>
-    <textarea name="message" placeholder="留言内容" required class="p-3 border rounded md:col-span-2"></textarea>
-    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700">发送</button>
-  </form>
-</section>
+  <!-- 博客模块 -->
+  <section id="blog" class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">📝 博客文章</h2>
+    <ul class="space-y-4">
+      <li class="bg-white p-4 shadow rounded-xl">
+        <h3 class="font-semibold">如何选择适合你的加速节点？</h3>
+        <p class="text-sm text-gray-600">2025-06-01 发布</p>
+      </li>
+      <li class="bg-white p-4 shadow rounded-xl">
+        <h3 class="font-semibold">CDN中转与直连的差异对比</h3>
+        <p class="text-sm text-gray-600">2025-05-20 发布</p>
+      </li>
+    </ul>
+  </section>
 
-<!-- Map Embed -->
-<section class="container mx-auto px-4 py-16">
-  <h2 class="text-3xl font-bold mb-4">我们的地址</h2>
-  <div class="w-full h-72 md:h-96 rounded-lg overflow-hidden shadow">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517902!2d-73.97741390372643!3d40.78302074600113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25888b2a55555%3A0xac07bef1e6a646ad!2sAffirmed%20Systems!5e0!3m2!1szh-CN!2sus!4v1748432148846!5m2!1szh-CN!2sus"
-      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</section>
+  <!-- 测速页面入口 -->
+  <section id="speedtest" class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">🚀 测速页面</h2>
+    <div class="bg-white shadow rounded-xl p-6 text-center">
+      <a href="https://cdn.dw-j.sbs/speedtest" target="_blank" class="text-blue-600 underline">点击前往测速</a>
+    </div>
+  </section>
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-gray-300 py-6">
-  <div class="container mx-auto px-4 text-center">
-    <p>&copy; 2025 云加速科技有限公司</p>
-  </div>
-</footer>
+  <!-- 更新日志 -->
+  <section id="updates" class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">📌 更新日志</h2>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+      <li>2025-06-01：新增德国节点</li>
+      <li>2025-05-20：延迟趋势图支持每日刷新</li>
+      <li>2025-05-10：伪装站上线，开放测速入口</li>
+    </ul>
+  </section>
+
+  <!-- 联系表单 -->
+  <section id="contact" class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">📬 联系我们</h2>
+    <form class="bg-white shadow rounded-xl p-6 space-y-4">
+      <input type="text" placeholder="你的姓名" class="w-full border px-4 py-2 rounded-lg" />
+      <input type="email" placeholder="你的邮箱" class="w-full border px-4 py-2 rounded-lg" />
+      <textarea placeholder="你的留言" class="w-full border px-4 py-2 rounded-lg" rows="4"></textarea>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg">发送</button>
+    </form>
+  </section>
+
+  <!-- 地图 -->
+  <section class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">🌍 节点地图</h2>
+    <div class="bg-white shadow rounded-xl overflow-hidden">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-180,-85,180,85&layer=mapnik"
+        class="w-full h-96 border-none"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-100 text-center text-sm text-gray-500 py-6 mt-10">
+    &copy; 2025 云加速CDN服务 | 保留所有权利
+  </footer>
 
 </body>
 </html>
