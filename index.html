@@ -8,7 +8,72 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50">
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <h1 class="text-4xl font-bold text-center mb-10">🌐 全球节点分布</h1>
+
+    <!-- 各大洲分布图表 -->
+    <section class="bg-white p-6 rounded shadow mb-10">
+      <h2 class="text-xl font-semibold mb-4">按大洲统计</h2>
+      <canvas id="continentChart" height="300"></canvas>
+    </section>
+
+    <!-- 各国家分布图表 -->
+    <section class="bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">按国家/地区统计</h2>
+      <canvas id="countryChart" height="300"></canvas>
+    </section>
+
+    <!-- 数据来源 -->
+    <p class="text-sm text-center text-gray-500 mt-8">数据来源：<code>/api/metrics.json</code></p>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const continentData = {
+      labels: ['亚洲', '欧洲', '北美', '南美', '大洋洲', '非洲'],
+      datasets: [{
+        label: '各洲节点数',
+        data: [77, 60, 42, 6, 8, 2],
+        backgroundColor: ['#3b82f6', '#06b6d4', '#ef4444', '#f97316', '#8b5cf6', '#22c55e']
+      }]
+    };
+
+    const countryData = {
+      labels: ['中国', '大洋洲', '新加坡', '非洲', '美国', '中东', '日本', '德国', '香港', '韩国'],
+      datasets: [{
+        label: '国家节点数',
+        data: [45, 20, 20, 3, 20, 15, 13, 12, 10, 8],
+        backgroundColor: '#6366f1'
+      }]
+    };
+
+    new Chart(document.getElementById('continentChart'), {
+      type: 'bar',
+      data: continentData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: '各大洲节点分布' }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('countryChart'), {
+      type: 'bar',
+      data: countryData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: '国家/地区节点分布' }
+        }
+      }
+    });
+  </script>
+</body>
 
   <!-- Navbar -->
 <nav class="bg-white shadow fixed w-full z-50">
