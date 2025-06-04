@@ -2,66 +2,58 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>全球节点分布</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold text-center mb-6">🌍 全球节点分布</h1>
-
-    <div class="bg-white shadow p-6 rounded mb-6">
+  <div class="max-w-4xl mx-auto p-8">
+    <h1 class="text-4xl font-bold text-center mb-6">🌐 全球节点分布</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <canvas id="continentChart" height="300"></canvas>
-    </div>
-
-    <div class="bg-white shadow p-6 rounded">
       <canvas id="countryChart" height="300"></canvas>
     </div>
-
-    <p class="mt-8 text-center text-sm text-gray-500">数据来源：<code>/api/edge_nodes.json</code></p>
+    <p class="text-center text-sm text-gray-500 mt-6">数据来源：/api/metrics.json</p>
   </div>
 
   <script>
-    // 模拟数据
+    // 示例数据（可改为 fetch JSON 动态加载）
     const continentData = {
-      labels: ["北美", "欧洲", "亚洲", "大洋洲", "南美", "非洲"],
+      labels: ["亚洲", "欧洲", "北美", "南美", "大洋洲", "非洲", "中东"],
       datasets: [{
-        label: "节点数量",
-        data: [72, 61, 49, 12, 11, 8],
-        backgroundColor: ["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#f87171"]
+        label: "各洲节点数",
+        data: [77, 60, 42, 12, 11, 8, 3],
+        backgroundColor: ["#1f8ef1", "#11cdef", "#f5365c", "#fb6340", "#8965e0", "#2dce89", "#fbc658"]
       }]
     };
 
     const countryData = {
-      labels: ["美国", "德国", "日本", "新加坡", "英国", "中国香港", "巴西"],
+      labels: ["中国", "新加坡", "美国", "日本", "德国", "香港", "韩国", "法国"],
       datasets: [{
-        label: "节点数量",
-        data: [45, 22, 20, 14, 12, 11, 9],
-        backgroundColor: "#3b82f6"
+        label: "国家节点数",
+        data: [45, 20, 20, 14, 12, 11, 9, 8],
+        backgroundColor: "#4c51bf"
       }]
     };
 
-    new Chart(document.getElementById('continentChart'), {
-      type: 'bar',
+    new Chart(document.getElementById("continentChart"), {
+      type: "bar",
       data: continentData,
       options: {
         responsive: true,
         plugins: {
-          legend: { display: false },
-          title: { display: true, text: '按大洲统计' }
+          title: { display: true, text: "各大洲节点分布" }
         }
       }
     });
 
-    new Chart(document.getElementById('countryChart'), {
-      type: 'bar',
+    new Chart(document.getElementById("countryChart"), {
+      type: "bar",
       data: countryData,
       options: {
         responsive: true,
         plugins: {
-          legend: { display: false },
-          title: { display: true, text: '按国家/地区统计' }
+          title: { display: true, text: "各国家节点分布" }
         }
       }
     });
