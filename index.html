@@ -76,40 +76,6 @@
     </div>
   </section>
 
-  <!-- 国家分布图表 -->
-  <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-8">🌐 国家/地区节点统计</h2>
-    <div class="bg-white p-6 rounded-lg shadow">
-      <canvas id="countryChart" height="300"></canvas>
-      <p class="text-sm text-center text-gray-500 mt-6">数据来源：<code>/api/metrics.json</code></p>
-    </div>
-  </section>
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const countryData = {
-      labels: ['中国', '大洋洲', '新加坡', '非洲', '美国', '中东', '日本', '德国', '香港', '韩国'],
-      datasets: [{
-        label: '国家节点数',
-        data: [45, 20, 20, 3, 20, 15, 13, 12, 10, 8],
-        backgroundColor: '#6366f1'
-      }]
-    };
-
-    new Chart(document.getElementById('countryChart'), {
-      type: 'bar',
-      data: countryData,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          title: { display: true, text: '国家/地区节点分布' }
-        }
-      }
-    });
-  </script>
-
   <!-- Blog Section -->
   <section id="blog" class="bg-gray-50 py-16">
     <div class="container mx-auto px-4">
