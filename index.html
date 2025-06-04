@@ -4,78 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>云加速CDN服务</title>
-  <!-- Tailwind CSS & AlpineJS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
-  <div class="max-w-4xl mx-auto px-4 py-10">
-    <h1 class="text-4xl font-bold text-center mb-10">🌐 全球节点分布</h1>
 
-    <!-- 各大洲分布图表 -->
-    <section class="bg-white p-6 rounded shadow mb-10">
-      <h2 class="text-xl font-semibold mb-4">按大洲统计</h2>
-      <canvas id="continentChart" height="300"></canvas>
-    </section>
-
-    <!-- 各国家分布图表 -->
-    <section class="bg-white p-6 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">按国家/地区统计</h2>
-      <canvas id="countryChart" height="300"></canvas>
-    </section>
-
-    <!-- 数据来源 -->
-    <p class="text-sm text-center text-gray-500 mt-8">数据来源：<code>/api/metrics.json</code></p>
-  </div>
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const continentData = {
-      labels: ['亚洲', '欧洲', '北美', '南美', '大洋洲', '非洲'],
-      datasets: [{
-        label: '各洲节点数',
-        data: [77, 60, 42, 6, 8, 2],
-        backgroundColor: ['#3b82f6', '#06b6d4', '#ef4444', '#f97316', '#8b5cf6', '#22c55e']
-      }]
-    };
-
-    const countryData = {
-      labels: ['中国', '大洋洲', '新加坡', '非洲', '美国', '中东', '日本', '德国', '香港', '韩国'],
-      datasets: [{
-        label: '国家节点数',
-        data: [45, 20, 20, 3, 20, 15, 13, 12, 10, 8],
-        backgroundColor: '#6366f1'
-      }]
-    };
-
-    new Chart(document.getElementById('continentChart'), {
-      type: 'bar',
-      data: continentData,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          title: { display: true, text: '各大洲节点分布' }
-        }
-      }
-    });
-
-    new Chart(document.getElementById('countryChart'), {
-      type: 'bar',
-      data: countryData,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          title: { display: true, text: '国家/地区节点分布' }
-        }
-      }
-    });
-  </script>
-</body>
-
-  <!-- Navbar -->
+<!-- Navbar -->
 <nav class="bg-white shadow fixed w-full z-50">
   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
     <a href="#home" class="text-2xl font-bold">云加速</a>
@@ -90,103 +24,101 @@
   </div>
 </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="pt-20 bg-gradient-to-r from-blue-500 to-green-500 text-white py-20">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">全球领先的云加速CDN服务</h1>
-      <p class="mb-8 text-lg md:text-xl">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
-      <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100">免费试用</a>
-    </div>
-  </section>
+<!-- Hero Section -->
+<section id="home" class="pt-20 bg-gradient-to-r from-blue-500 to-green-500 text-white py-20">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">全球领先的云加速CDN服务</h1>
+    <p class="mb-8 text-lg md:text-xl">高性能、低延迟、万兆带宽，助力您的业务高速稳定运行</p>
+    <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-gray-100">免费试用</a>
+  </div>
+</section>
 
-  <!-- Features -->
-  <section class="container mx-auto px-4 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      <div>
-        <!-- SVG 图标：全球节点 -->
-        <div class="flex justify-center mb-4">
-          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" class="text-blue-600" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/>
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">全球节点</h3>
-        <p>覆盖全球 200+ 节点，智能调度</p>
+<!-- Features -->
+<section class="container mx-auto px-4 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div>
+      <div class="flex justify-center mb-4">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="text-blue-600" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/>
+        </svg>
       </div>
-      <div>
-        <!-- SVG 图标：自主缓存 -->
-        <div class="flex justify-center mb-4">
-          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" class="text-green-600" viewBox="0 0 24 24">
-            <rect x="3" y="11" width="18" height="7" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">自主缓存</h3>
-        <p>多层缓存策略，有效加速资源加载</p>
+      <h3 class="font-semibold mb-2">全球节点</h3>
+      <p>覆盖全球 200+ 节点，智能调度</p>
+    </div>
+    <div>
+      <div class="flex justify-center mb-4">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="text-green-600" viewBox="0 0 24 24">
+          <rect x="3" y="11" width="18" height="7" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
       </div>
-      <div>
-        <!-- SVG 图标：实时监控 -->
-        <div class="flex justify-center mb-4">
-          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" class="text-pink-600" viewBox="0 0 24 24">
-            <rect x="2" y="7" width="20" height="14" rx="2"/>
-            <path d="M16 3v4M8 3v4"/>
-          </svg>
-        </div>
-        <h3 class="font-semibold mb-2">实时监控</h3>
-        <p>全面的流量监控与告警系统</p>
+      <h3 class="font-semibold mb-2">自主缓存</h3>
+      <p>多层缓存策略，有效加速资源加载</p>
+    </div>
+    <div>
+      <div class="flex justify-center mb-4">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="text-pink-600" viewBox="0 0 24 24">
+          <rect x="2" y="7" width="20" height="14" rx="2"/>
+          <path d="M16 3v4M8 3v4"/>
+        </svg>
       </div>
+      <h3 class="font-semibold mb-2">实时监控</h3>
+      <p>全面的流量监控与告警系统</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Blog Section -->
-  <section id="blog" class="bg-gray-50 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8">最新博客</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <article class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2"><a href="#">如何优化网站性能</a></h3>
-          <p class="text-sm text-gray-500 mb-4">2025-05-28 | 技术探讨</p>
-          <p>本文介绍了常见的性能优化策略，包含缓存、压缩等技术。</p>
-        </article>
-        <article class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2"><a href="#">CDN 安全防护实践</a></h3>
-          <p class="text-sm text-gray-500 mb-4">2025-05-20 | 安全运维</p>
-          <p>深入分享如何对抗常见的 DDoS 攻击与缓存穿透。</p>
-        </article>
-      </div>
+<!-- Blog Section -->
+<section id="blog" class="bg-gray-50 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-8">最新博客</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <article class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2"><a href="#">如何优化网站性能</a></h3>
+        <p class="text-sm text-gray-500 mb-4">2025-05-28 | 技术探讨</p>
+        <p>本文介绍了常见的性能优化策略，包含缓存、压缩等技术。</p>
+      </article>
+      <article class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2"><a href="#">CDN 安全防护实践</a></h3>
+        <p class="text-sm text-gray-500 mb-4">2025-05-20 | 安全运维</p>
+        <p>深入分享如何对抗常见的 DDoS 攻击与缓存穿透。</p>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-4">联系我们</h2>
-    <form action="https://formspree.io/f/xdkgqdqo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded"/>
-      <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded"/>
-      <textarea name="message" placeholder="留言内容" required class="p-3 border rounded md:col-span-2"></textarea>
-      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700">发送</button>
-    </form>
-  </section>
+<!-- Contact Form -->
+<section id="contact" class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold mb-4">联系我们</h2>
+  <form action="https://formspree.io/f/xdkgqdqo" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input type="text" name="name" placeholder="姓名" required class="p-3 border rounded"/>
+    <input type="email" name="_replyto" placeholder="邮箱" required class="p-3 border rounded"/>
+    <textarea name="message" placeholder="留言内容" required class="p-3 border rounded md:col-span-2"></textarea>
+    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full md:col-span-2 hover:bg-blue-700">发送</button>
+  </form>
+</section>
 
-  <!-- Map Embed -->
-  <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-4">我们的地址</h2>
-    <div class="w-full h-72 md:h-96 rounded-lg overflow-hidden shadow">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517902!2d-73.97741390372643!3d40.78302074600113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25888b2a55555%3A0xac07bef1e6a646ad!2sAffirmed%20Systems!5e0!3m2!1szh-CN!2sus!4v1748432148846!5m2!1szh-CN!2sus"
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </section>
+<!-- Map Embed -->
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold mb-4">我们的地址</h2>
+  <div class="w-full h-72 md:h-96 rounded-lg overflow-hidden shadow">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.261296517902!2d-73.97741390372643!3d40.78302074600113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25888b2a55555%3A0xac07bef1e6a646ad!2sAffirmed%20Systems!5e0!3m2!1szh-CN!2sus!4v1748432148846!5m2!1szh-CN!2sus"
+      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-300 py-6">
-    <div class="container mx-auto px-4 text-center">
-      <p>&copy; 2025 云加速科技有限公司</p>
-    </div>
-  </footer>
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-300 py-6">
+  <div class="container mx-auto px-4 text-center">
+    <p>&copy; 2025 云加速科技有限公司</p>
+  </div>
+</footer>
+
 </body>
 </html>
