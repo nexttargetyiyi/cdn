@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>CDN 统计信息</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <div class="max-w-3xl mx-auto py-16 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">📊 CDN 统计信息</h1>
+    <div id="metrics" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg bg-white p-6 rounded shadow">
+      <div><strong>服务可用率：</strong><span id="uptime">加载中...</span></div>
+      <div><strong>本月流量：</strong><span id="traffic">加载中...</span></div>
+      <div><strong>边缘节点数：</strong><span id="edge_nodes">加载中...</span></div>
+      <div><strong>平均延迟：</strong><span id="avg_latency_ms">加载中...</span> ms</div>
+    </div>
+    <p class="mt-8 text-sm text-center text-gray-500">数据源：<code>/api/metrics.json</code></p>
+  </div>
+
+  <script>
+    fetch('/api/metrics.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('uptime').textContent = data.uptime;
+        document.getElementById('traffic').textContent = data.traffic;
+        document.getElementById('edge_nodes').textContent = data.edge_nodes;
+        document.getElementById('avg_latency_ms').textContent = data.avg_latency_ms;
+      })
+      .catch(err => {
+        document.getElementById('metrics').innerHTML = '<p class="text-red-600">加载失败，请稍后再试。</p>';
+        console.error('加载失败:', err);
+      });
+  </script>
+</body>
+</html>
