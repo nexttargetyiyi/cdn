@@ -2,25 +2,40 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>如何优化网站性能 - 云加速博客</title>
+  <title>现代 Web 性能优化的系统实践 - 云加速博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-4">如何优化网站性能</h1>
-    <p class="text-sm text-gray-500 mb-8">发布日期：2025-05-28 | 分类：技术探讨</p>
+    <h1 class="text-4xl font-bold mb-4">现代 Web 性能优化的系统实践</h1>
+    <p class="text-sm text-gray-500 mb-8">发布日期：2025-06-01 | 分类：前端优化</p>
 
     <div class="prose max-w-none">
-      <p>网站性能直接影响用户体验与搜索引擎排名。以下是我们总结的优化建议：</p>
+      <p>随着页面复杂度持续提升，Web 性能优化已成为用户体验竞争的关键。我们从链路传输、资源加载、页面结构三大维度，梳理了现代 Web 性能优化的核心实践方法。</p>
+
+      <h2>一、网络层优化：协议与路径</h2>
       <ul>
-        <li>启用浏览器缓存和 CDN 边缘缓存</li>
-        <li>压缩 JavaScript 和 CSS 文件</li>
-        <li>使用现代图片格式（如 WebP）</li>
-        <li>部署 HTTP/2 或 HTTP/3 提高请求效率</li>
-        <li>开启 GZIP 或 Brotli 内容压缩</li>
+        <li><strong>启用 HTTP/3</strong>：利用 QUIC 协议减少 TCP 握手延迟，在弱网环境下效果尤为显著。</li>
+        <li><strong>使用 CDN 边缘缓存</strong>：尽量将静态资源就近调度，降低 RTT 和首字节时间。</li>
+        <li><strong>开启 Brotli 压缩</strong>：相比传统 Gzip，Brotli 在文本资源压缩率上平均高出 15~25%。</li>
       </ul>
-      <p>这些策略能够有效缩短页面加载时间，提升站点稳定性。</p>
+
+      <h2>二、资源层优化：加载与体积</h2>
+      <ul>
+        <li><strong>延迟加载与按需加载</strong>：避免初始加载过重，合理使用 `loading=lazy` 和动态导入。</li>
+        <li><strong>合并小文件</strong>：过多小文件会带来阻塞和性能碎片，需借助工具打包合并。</li>
+        <li><strong>现代图片格式</strong>：WebP/AVIF 在保证画质的同时显著缩小体积。</li>
+      </ul>
+
+      <h2>三、结构层优化：交互与稳定性</h2>
+      <ul>
+        <li><strong>提升首屏可用性</strong>：优化 FCP（First Contentful Paint）和 LCP（Largest Contentful Paint）。</li>
+        <li><strong>减少 CLS</strong>：避免图片、广告造成页面位移，保证布局稳定。</li>
+        <li><strong>使用骨架屏</strong>：增强用户感知性能，缓解等待焦虑。</li>
+      </ul>
+
+      <p>Web 性能优化并非一劳永逸，而是一套持续演进的系统工程，建议结合 Lighthouse、Web Vitals 等工具定期审查，形成量化指标闭环。</p>
     </div>
 
     <div class="mt-10">
