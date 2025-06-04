@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全球节点分布</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- 页面内容 -->
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-center mb-8">🌐 国家/地区节点统计</h1>
+    
+    <section class="bg-white p-6 rounded shadow">
+      <canvas id="countryChart" height="300"></canvas>
+      <p class="text-sm text-center text-gray-500 mt-4">数据来源：<code>/api/metrics.json</code></p>
+    </section>
+  </div>
+
+  <!-- 图表渲染逻辑 -->
+  <script>
+    const countryData = {
+      labels: ['中国', '大洋洲', '新加坡', '非洲', '美国', '中东', '日本', '德国', '香港', '韩国'],
+      datasets: [{
+        label: '国家节点数',
+        data: [45, 20, 20, 3, 20, 15, 13, 12, 10, 8],
+        backgroundColor: '#6366f1'
+      }]
+    };
+
+    new Chart(document.getElementById('countryChart'), {
+      type: 'bar',
+      data: countryData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: '国家/地区节点分布' }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
