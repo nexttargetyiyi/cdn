@@ -12,7 +12,7 @@
 
 <!-- Navbar -->
 <nav x-data="{ open: false }" class="bg-white shadow fixed w-full z-50">
-  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+  <<div class="container mx-auto px-4 py-5 flex items-center justify-between">
     <!-- Logo Placeholder（如需保留LOGO可解注释） -->
     <!-- <a href="#home" class="text-2xl font-bold">LOGO</a> -->
 
@@ -44,27 +44,28 @@
   </div>
 
   <!-- 自定义 active 效果样式 -->
-  <style>
-    .nav-link {
-      @apply text-gray-700 hover:text-blue-600 block md:inline-block px-3 py-2 rounded transition;
-    }
+<style>
+  .nav-link {
+    @apply text-gray-800 hover:text-white hover:bg-blue-500 block md:inline-block px-4 py-2 rounded transition duration-200 ease-in-out;
+  }
 
-    .nav-link-active {
-      @apply text-white bg-blue-600 hover:bg-blue-700;
-    }
-  </style>
+  .nav-link-active {
+    @apply text-white bg-blue-600 font-semibold;
+  }
+</style>
 
   <!-- 自动高亮当前页面的 JS 脚本 -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const links = document.querySelectorAll(".nav-link");
-      links.forEach(link => {
-        const href = link.getAttribute("href");
-        if (href && window.location.href.includes(href)) {
-          link.classList.add("nav-link-active");
-        }
-      });
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll(".nav-link");
+  const currentPath = window.location.pathname;
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href && (href === currentPath || currentPath.endsWith(href))) {
+      link.classList.add("nav-link-active");
+    }
+  });
+});
   </script>
 </nav>
 
