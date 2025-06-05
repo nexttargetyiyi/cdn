@@ -10,21 +10,62 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-  <!-- Navbar -->
 <!-- Navbar -->
-<nav class="bg-white shadow fixed w-full z-50">
-  <div class="container mx-auto px-4 py-3 flex justify-center">
-    <div class="flex space-x-6">
-      <a href="#home" class="hover:text-blue-600">首页</a>
-      <a href="#blog" class="hover:text-blue-600">博客</a>
-      <a href="#contact" class="hover:text-blue-600">联系我们</a>
-      <a href="/speedtest/" class="hover:text-blue-600">测速</a>
-      <a href="/metrics.html" class="hover:text-blue-600">CDN统计</a>
-      <a href="/edge-nodes.html" class="hover:text-blue-600">全球节点</a>
-      <a href="/status.html" class="hover:text-blue-600">系统状态</a>
-      <a href="/changelog.html" class="hover:text-blue-600">更新日志</a>
+<nav x-data="{ open: false }" class="bg-white shadow fixed w-full z-50">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo Placeholder（如需保留LOGO可解注释） -->
+    <!-- <a href="#home" class="text-2xl font-bold">LOGO</a> -->
+
+    <!-- 汉堡按钮（移动端） -->
+    <button @click="open = !open" class="md:hidden text-gray-800 focus:outline-none">
+      <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- 导航链接 -->
+    <div :class="open ? 'block' : 'hidden'" class="w-full md:flex md:items-center md:justify-center md:w-auto space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
+      <a href="#home" class="nav-link">首页</a>
+      <a href="#blog" class="nav-link">博客</a>
+      <a href="#contact" class="nav-link">联系我们</a>
+      <a href="/speedtest/" class="nav-link">测速</a>
+      <a href="/metrics.html" class="nav-link">CDN统计</a>
+      <a href="/edge-nodes.html" class="nav-link">全球节点</a>
+      <a href="/status.html" class="nav-link">系统状态</a>
+      <a href="/changelog.html" class="nav-link">更新日志</a>
     </div>
   </div>
+
+  <!-- 自定义 active 效果样式 -->
+  <style>
+    .nav-link {
+      @apply text-gray-700 hover:text-blue-600 block md:inline-block px-3 py-2 rounded transition;
+    }
+
+    .nav-link-active {
+      @apply text-white bg-blue-600 hover:bg-blue-700;
+    }
+  </style>
+
+  <!-- 自动高亮当前页面的 JS 脚本 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const links = document.querySelectorAll(".nav-link");
+      links.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href && window.location.href.includes(href)) {
+          link.classList.add("nav-link-active");
+        }
+      });
+    });
+  </script>
 </nav>
 
   <!-- Hero Section -->
